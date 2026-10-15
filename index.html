@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Invoice Maker | AAH Enterprises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loader">
+    <div class="loader-logo">AAH</div>
+    <p>Enterprises</p>
+    <div class="bar"><span></span></div>
+</div>
+
+<header>
+    <div class="logo">AAH Enterprises</div>
+    <nav>
+        <a href="#create">New Invoice</a>
+        <a href="#saved">Saved Invoices</a>
+    </nav>
+</header>
+
+<main>
+    <section id="create" class="card">
+        <h1>Invoice <span class="grad">Maker</span></h1>
+        <p class="sub">Fill in the details, then save or download your invoice.</p>
+
+        <div class="top">
+            <div><label for="client">Client name</label><input id="client" type="text" placeholder="e.g. Ali Traders"></div>
+            <div><label for="date">Date</label><input id="date" type="date"></div>
+            <div><label>Invoice no.</label><input id="no" type="text" readonly></div>
+        </div>
+
+        <h2>Items</h2>
+        <div class="item head"><span>Item / service</span><span>Qty</span><span>Price</span><span>Amount</span><span></span></div>
+        <div id="items"></div>
+        <button id="addItem" class="ghost" type="button">+ Add item</button>
+
+        <div id="total">Total: Rs 0</div>
+
+        <div class="actions">
+            <button id="save" type="button">Save invoice</button>
+            <button id="pdf" type="button">Download PDF</button>
+            <button id="newInv" class="ghost" type="button">New invoice</button>
+        </div>
+        <p class="hint">Tip: in the print window, choose "Save as PDF" as the printer.</p>
+    </section>
+
+    <section id="saved" class="card">
+        <h2>Saved invoices</h2>
+        <input id="search" type="search" placeholder="Search by client, date or invoice number">
+        <div id="list"></div>
+    </section>
+</main>
+
+<footer>&copy; 2026 AAH Enterprises &bull; Founder &amp; CEO: Muhammad Awais Raza</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

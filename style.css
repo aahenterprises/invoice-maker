@@ -1,0 +1,130 @@
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    color: #e9ecff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background:
+            radial-gradient(circle at 85% 8%, rgba(124,58,237,0.45), transparent 40%),
+            radial-gradient(circle at 5% 50%, rgba(34,211,238,0.20), transparent 40%),
+            radial-gradient(circle at 75% 92%, rgba(37,99,235,0.35), transparent 45%),
+            #070920;
+    background-attachment: fixed;
+}
+
+/* Loading screen */
+#loader {
+    position: fixed; inset: 0; z-index: 99;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: #070920;
+    transition: opacity .6s ease, visibility .6s ease;
+}
+#loader.hide { opacity: 0; visibility: hidden; }
+.loader-logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 84px; font-weight: 700; letter-spacing: 6px;
+    background: linear-gradient(90deg, #a78bfa, #22d3ee, #a78bfa);
+    background-size: 200% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: pop 1s ease both, shine 2s linear infinite;
+}
+#loader p { letter-spacing: 8px; color: #b9c0e6; font-size: 13px; margin-top: 4px; text-transform: uppercase; }
+.bar { width: 180px; height: 3px; margin-top: 28px; background: rgba(255,255,255,0.12); border-radius: 3px; overflow: hidden; }
+.bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #7c3aed, #22d3ee); animation: fill 1.6s ease forwards; }
+@keyframes pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
+@keyframes shine { to { background-position: -200% 0; } }
+@keyframes fill { to { width: 100%; } }
+
+/* Header and footer */
+header {
+    position: sticky; top: 14px; z-index: 5;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin: 14px 5% 0; padding: 12px 14px 12px 26px;
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 60px;
+    background: rgba(255,255,255,0.07); backdrop-filter: blur(14px);
+}
+.logo { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; color: #fff; }
+nav a { color: #b9c0e6; text-decoration: none; font-size: 14px; padding: 9px 16px; border-radius: 30px; }
+nav a:hover { color: #fff; background: rgba(124,58,237,0.5); }
+footer { text-align: center; padding: 30px 5% 40px; color: #8f98c4; font-size: 14px; }
+
+/* Cards */
+main { max-width: 900px; margin: 0 auto; padding: 40px 5% 20px; }
+.card {
+    padding: 34px 30px; margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.14); border-radius: 24px;
+    background: linear-gradient(135deg, rgba(124,58,237,0.20), rgba(34,211,238,0.07));
+    animation: rise .8s ease both;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+h1, h2 { font-family: 'Playfair Display', Georgia, serif; color: #fff; }
+h1 { font-size: 44px; line-height: 1.1; }
+h2 { font-size: 24px; margin: 26px 0 12px; }
+#saved h2 { margin-top: 0; }
+.grad { background: linear-gradient(90deg, #a78bfa, #22d3ee); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { color: #b9c0e6; font-weight: 300; margin: 8px 0 24px; }
+
+/* Form */
+.top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; }
+label { display: block; font-size: 13px; color: #b9c0e6; margin-bottom: 6px; }
+input {
+    width: 100%; padding: 12px 14px; font: inherit; font-size: 15px; color: #fff;
+    background: rgba(7,9,32,0.6); border: 1px solid rgba(255,255,255,0.18); border-radius: 12px;
+}
+input:focus { outline: none; border-color: #22d3ee; }
+
+.item { display: grid; grid-template-columns: 1fr 70px 100px 90px 36px; gap: 10px; align-items: center; margin-bottom: 10px; animation: rise .4s ease both; }
+.item.head { font-size: 12px; color: #8f98c4; margin-bottom: 6px; animation: none; }
+.amt { text-align: right; color: #67e8f9; font-weight: 500; }
+.x { width: 36px; height: 36px; padding: 0; border-radius: 50%; background: rgba(255,255,255,0.08); box-shadow: none; }
+
+button {
+    padding: 13px 26px; border: 0; cursor: pointer; font: inherit; font-weight: 500; color: #fff;
+    border-radius: 40px; background: linear-gradient(90deg, #7c3aed, #2563eb, #22d3ee);
+    box-shadow: 0 8px 24px rgba(124,58,237,0.4);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+button:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(34,211,238,0.4); }
+button.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.3); box-shadow: none; }
+
+#total { text-align: right; font-family: 'Playfair Display', Georgia, serif; font-size: 32px; margin: 22px 0; color: #fff; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hint { margin-top: 12px; font-size: 13px; color: #8f98c4; }
+
+/* Saved list */
+#search { margin-bottom: 16px; }
+.saved-row {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding: 16px 18px; margin-bottom: 10px;
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; background: rgba(255,255,255,0.04);
+    animation: rise .4s ease both;
+}
+.saved-row b { color: #fff; font-weight: 500; }
+.saved-row small { display: block; color: #9aa3cc; }
+.saved-row .btns { display: flex; gap: 8px; align-items: center; }
+.saved-row button { padding: 8px 18px; font-size: 14px; }
+.empty { color: #8f98c4; font-weight: 300; }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+@media (max-width: 700px) {
+    header { border-radius: 24px; justify-content: center; }
+    h1 { font-size: 34px; }
+    .top { grid-template-columns: 1fr; }
+    .item { grid-template-columns: 1fr 56px 80px 70px 32px; gap: 6px; }
+    .card { padding: 26px 18px; }
+}
+
+/* Print / PDF: only the invoice, on white paper */
+@media print {
+    body { background: #fff; color: #000; }
+    #loader, header, footer, #saved, .actions, .hint, #addItem, .x, .sub { display: none !important; }
+    main { padding: 0; max-width: none; }
+    .card { background: none; border: 0; padding: 0; animation: none; }
+    h1, h2, #total, label, .amt { color: #000; }
+    .grad { color: #000; background: none; }
+    input { background: none; color: #000; border: 0; border-bottom: 1px solid #999; border-radius: 0; }
+}
